@@ -125,23 +125,9 @@ def is_flipped(raw):
     return (int("" + chr(raw[10]), 16) & 0x02) == 0
 
 
-def run():
-    output_file = argv[-1]
-
-    while True:
-        data = get_data()
-
-        if data["status"] == 1:
-            json_data = dumps(data)
-            if len(argv) > 1:
-                f = open(output_file, "a")
-                f.write(json_data+"\n")
-                f.close()
-            else:
-                print(json_data)
-
-        sleep(UPDATE_DURATION)
+def main():
+    print(dumps(get_data()))
 
 
 if __name__ == '__main__':
-    run()
+    main()
